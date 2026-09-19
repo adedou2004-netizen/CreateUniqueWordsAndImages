@@ -7,8 +7,8 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' })
 
 export const metadata: Metadata = {
-    title: 'Supabase Storage Manager | Admin Interface',
-    description: 'Manage your Supabase storage buckets and images',
+    title: 'Mamie Lemonde Utility Hub',
+    description: 'Personal tools for vocabulary images and prompts',
 }
 
 export default function RootLayout({
@@ -30,34 +30,32 @@ export default function RootLayout({
                     backdropFilter: 'blur(10px)',
                     display: 'flex',
                     justifyContent: 'center',
-                    gap: '2rem',
+                    flexWrap: 'wrap',
+                    gap: '1.5rem',
                     borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
                 }}>
                     <Link href="/" style={{
                         color: 'white',
                         fontWeight: '600',
-                        fontSize: '1.1rem',
+                        fontSize: '1.05rem',
                         textDecoration: 'none',
-                        transition: 'opacity 0.2s',
-                    }} className="nav-link">
-                        🏠 DashBoard
+                    }}>
+                        🏠 Tools
                     </Link>
-                    <Link href="/storage" style={{
+                    <Link href="/book-images" style={{
                         color: 'white',
                         fontWeight: '600',
-                        fontSize: '1.1rem',
+                        fontSize: '1.05rem',
                         textDecoration: 'none',
-                        transition: 'opacity 0.2s',
-                    }} className="nav-link">
-                        🗄️ Storage
+                    }}>
+                        📚 Book Images
                     </Link>
                     <Link href="/prompts" style={{
                         color: 'white',
                         fontWeight: '600',
-                        fontSize: '1.1rem',
+                        fontSize: '1.05rem',
                         textDecoration: 'none',
-                        transition: 'opacity 0.2s',
-                    }} className="nav-link">
+                    }}>
                         ✨ Prompts
                     </Link>
                 </nav>
