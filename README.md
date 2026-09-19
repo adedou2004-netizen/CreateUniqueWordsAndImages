@@ -1,71 +1,67 @@
-# Supabase Admin Interface
+# Mamie Lemonde Utility Hub
 
-A modern, beautiful admin interface for managing Supabase storage buckets and images.
+A small Next.js utility app for vocabulary-image preparation and prompt generation.
 
-## Features
+## Book Image Utility
 
-- 🗄️ **Bucket Management** - Select and browse different storage buckets
-- 📤 **Image Upload** - Drag-and-drop or click to upload multiple images
-- 🖼️ **Image Grid** - View all images in a responsive grid layout
-- 🗑️ **Delete Images** - Remove images with a single click
-- 🔍 **Full-Size Preview** - Click any image to view it full-size
-- 📁 **Folder Support** - Organize images in folders/paths
+The **Book Image Utility** is designed for the Canva workflow used for vocabulary books.
 
-## Setup Instructions
+### Workflow
 
-### 1. Create Environment File
+1. In Canva, name the vocabulary image pages simply:
+   - `1`
+   - `2`
+   - `3`
+   - and so on.
+2. Download the images as PNG/JPG files to a normal folder.
+3. Open **Book Images** in this app.
+4. Sign in with the Supabase administrator email.
+5. Choose the matching Supabase vocabulary list.
+6. Select all the numbered Canva images at once.
+7. Review the automatic matches.
+8. Upload the batch.
 
-Create a file named `.env.local` in the root directory (`c:\Users\adedou\adminSupabase\.env.local`) with the following content:
+The utility matches the number in the Canva filename to the vocabulary-list position.
+
+Example:
+
+- `1.png` + list position 1 = `flower`
+- `2.png` + list position 2 = `baby`
+- `10.png` + list position 10 = `spoon`
+
+For list 241, the resulting names are:
+
+- `241_1_flower.png`
+- `241_2_baby.png`
+- `241_10_spoon.png`
+
+After upload, the utility also saves the new filename in
+`vocabulary_list_items.uploaded_image_url`.
+
+## Other Tool
+
+- **Prompt Generator** — creates child-friendly image prompts from a single word or a vocabulary file.
+
+## Supabase configuration
+
+The browser must use a **publishable/anon key only**.
+
+Example:
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=https://dbqrenlvinqheyjppxby.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRicXJlbmx2aW5xaGV5anBweGJ5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1NTk2MjQzNiwiZXhwIjoyMDcxNTM4NDM2fQ.GFmOEKusYDUpnqroLC3l2uNDmr0An5w6miEMZDCDmpY
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your_publishable_key
 ```
 
-### 2. Restart Development Server
+Never place a Supabase service-role key in a `NEXT_PUBLIC_*` variable or commit it to GitHub.
 
-After creating the `.env.local` file, restart the development server:
+The `word-images` bucket is protected by Storage policies so authenticated administrator users can upload/update files.
+
+## Run locally
 
 ```bash
-# Stop the current server (Ctrl+C)
-# Then run:
+npm install
 npm run dev
 ```
 
-### 3. Open the Application
-
-Navigate to [http://localhost:3000](http://localhost:3000) in your browser.
-
-## Usage
-
-1. **Select a Bucket** - Choose a storage bucket from the dropdown
-2. **Set Folder Path** (Optional) - Enter a folder path like `word-images/guess50` or leave empty for root
-3. **Upload Images** - Drag and drop images or click to browse
-4. **View Images** - Browse your images in the grid
-5. **Delete Images** - Hover over an image and click the trash icon
-6. **View Full Size** - Click any image to see it full-size
-
-## Tech Stack
-
-- **Next.js 15** - React framework
-- **Supabase** - Backend and storage
-- **TypeScript** - Type safety
-- **Framer Motion** - Animations
-
-## Project Structure
-
-```
-adminSupabase/
-├── app/
-│   ├── globals.css       # Global styles
-│   ├── layout.tsx        # Root layout
-│   └── page.tsx          # Main admin page
-├── components/
-│   ├── BucketSelector.tsx  # Bucket dropdown
-│   ├── ImageGrid.tsx       # Image display grid
-│   └── UploadZone.tsx      # File upload component
-├── lib/
-│   ├── supabase.ts         # Supabase client
-│   └── storageUtils.ts     # Storage helper functions
-└── .env.local            # Environment variables (you need to create this)
-```
+Then open `http://localhost:3000`.
